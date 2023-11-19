@@ -7,11 +7,14 @@ import io.cucumber.java.en.When;
 import tests.*;
 
 public class amazonSteps {
+
     AmazonHomeTest hometest = new AmazonHomeTest();
     AllScreen allscreen = new AllScreen();
     AllVideoGamesTest videoGames = new AllVideoGamesTest();
     SortAllVideoTest sort = new SortAllVideoTest();
-    PriceFilterTest price = new PriceFilterTest();
+    CardTest card = new CardTest();
+    BuyTest buy = new BuyTest();
+    AddItemsToCart addToCard = new AddItemsToCart();
 
 
     @Given("I navigated to {string}")
@@ -71,6 +74,34 @@ public class amazonSteps {
     @Then("I should validate screen after sort")
     public void iShouldValidateScreenAfterSort() {
         sort.validateSortingByPriceFromHighToLow();
-        price.retrieveAllProducts();
+
+    }
+
+
+    @When("i navigate to card screen")
+    public void iNavigateToCardScreen() {
+        card.navigateToCard();
+    }
+
+    @Then("i should validate all elements into card")
+    public void iShouldValidateAllElementsIntoCard() {
+        card.vaildateCardOpenedSuccessfully();
+    }
+
+    @When("i proceed to buy")
+    public void iProceedToBuy() {
+        buy.proceedToBuy();
+
+    }
+
+    @Then("i Should redirect to login flow successfully using {string} and {string}")
+    public void iShouldRedirectToLoginFlowSuccessfullyUsingAnd(String arg0, String arg1) {
+        buy.login(arg0 , arg1);
+    }
+
+
+    @And("i should to be able to add all products from specific price")
+    public void iShouldToBeAbleToAddAllProductsFromSpecificPrice() {
+        addToCard.AddSpecificItemsToCart();
     }
 }
